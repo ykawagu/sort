@@ -13,7 +13,7 @@ void quick_sort(int A[], int n){
     i = 0;
     j = n-1;
     pivot = A[0];
-    if (n == 1) return;
+    if (n <= 1) return;
     else{
         for(i = j = 1;i < n; i++){
             if(A[i] <= pivot){
@@ -24,12 +24,11 @@ void quick_sort(int A[], int n){
             }
         }
     }
-        //{pivot未満}pivot{pivot以上}に並び替える
-        int z = A[j-1];
-        A[j-1] = A[0];
-        A[0] = z;
-        if (j >= 2) quick_sort(A, j);
-        if (j <= n-2) quick_sort(A+j,n-j);
+    //{pivot未満}pivot{pivot以上}に並び替える
+    A[0] = A[j-1];
+    A[j-1] = pivot;
+    quick_sort(A, j-1);
+    quick_sort(A+j, n-j);
 }
 
 
